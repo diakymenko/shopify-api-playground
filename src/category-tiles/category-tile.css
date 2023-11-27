@@ -1,0 +1,15 @@
+.tile {
+    margin: 10px;
+    padding: 10px;
+}
+
+.tile > img {
+    border-radius: 100px;
+    height: 200px;
+    width: 200px;
+}
+
+.tiles {
+    display: flex;
+    justify-content: center;
+}

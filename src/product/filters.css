@@ -1,0 +1,10 @@
+.filters {
+    display: flex;
+    grid-gap: 16px;
+}
+
+.custom-restricted-width {
+    height: 160px;
+    border: 1px solid gray;
+    border-radius: 4px;
+}
