@@ -2,7 +2,7 @@ import './product.css';
 
 import Product, {ProductProps} from "./Product";
 import React, {useEffect, useState} from 'react';
-import ProductsSort, {getSortParams, SortingType, SortParams} from "./ProductsSort";
+import ProductsSort, {getSortParams, SortingType} from "./ProductsSort";
 import Pagination, {PageInfo, PaginationParams, PER_PAGE} from "./Pagination";
 import Filter, {FilterData, KNOWN_FILTERS} from "./Filter";
 
@@ -23,9 +23,8 @@ export default function Products() {
         hasPreviousPage: false
     })
 
-
-    const url = 'https://zulily-portal-dev.myshopify.com/api/2023-07/graphql.json';
-    const accessToken = 'f48e922db0ea3eff276f5f39c539a201';
+    const url = process.env.REACT_APP_SHOPIFY_URL || "";
+    const accessToken = process.env.REACT_APP_SHOPIFY_TOKEN || "";
 
     const sortParams = getSortParams(sortType);
 
@@ -55,7 +54,6 @@ export default function Products() {
         return productsArray;
     }
 
-    //to prevent infinite loop
     useEffect(() => {
         fetch(url, {
             method: 'POST',
@@ -77,7 +75,6 @@ export default function Products() {
                 setFiltersData(res.data.collection.products.filters)
             })
     }, [sortType, pagination, filterParams])
-
 
     return (
         <div>
